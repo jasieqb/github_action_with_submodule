@@ -20,6 +20,11 @@ jobs:
         with:
           submodules: true  # Ensure submodules are initialized
 
+      - name: Git Submodule Update
+        run: |
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
+
       # Run build script
       - name: Run build
         run: ./build.sh
