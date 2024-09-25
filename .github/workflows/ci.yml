@@ -1,0 +1,29 @@
+
+name: CI with Submodule
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repository and initialize submodules
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: true  # Ensure submodules are initialized
+
+      # Run build script
+      - name: Run build
+        run: ./build.sh
+
+      # Run tests
+      - name: Run tests
+        run: ./test.sh
